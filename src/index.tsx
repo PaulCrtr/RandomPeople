@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
-import theme from "./theme";
-import "./index.css";
+import theme from "./styles/theme";
+import "./styles/index.css";
 
 ReactDOM.render(
   <React.StrictMode>
