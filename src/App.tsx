@@ -1,9 +1,9 @@
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
-import { Flex } from "@chakra-ui/layout";
+import UserList from "./components/userList/UserList";
+import { Spinner, Flex } from "@chakra-ui/react";
 import useFetchUsers from "./api/useFetchUsers";
-import UserList from "./components/users/UserList";
 
 const App = () => {
   const { users, loading, error } = useFetchUsers();
@@ -17,7 +17,11 @@ const App = () => {
     >
       <Navbar />
       <Header />
-      <UserList users={users!} />
+      {loading ? (
+        <Spinner size="xl" margin="auto" />
+      ) : (
+        <UserList users={users!} />
+      )}
       <Footer />
     </Flex>
   );

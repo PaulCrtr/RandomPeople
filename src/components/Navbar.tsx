@@ -1,5 +1,4 @@
-import { Flex, Heading } from "@chakra-ui/layout";
-import { useMediaQuery } from "@chakra-ui/react";
+import { useMediaQuery, Flex, Heading } from "@chakra-ui/react";
 
 const Navbar = () => {
   const [isLargerThan480] = useMediaQuery("(min-width: 480px)");
