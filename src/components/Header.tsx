@@ -4,7 +4,7 @@ import overlayHome from "../assets/img/overlayRandomPeopleV1.png";
 const Header = () => {
   return (
     <Flex
-      h={["150", "200", "250", "280"]}
+      h={["200", "200", "250", "280"]}
       backgroundImage={`url(${overlayHome})`}
       backgroundSize="cover"
       backgroundPosition="center"

@@ -15,4 +15,11 @@ export type User = {
   dob: {
     date: string;
   };
+  age: number;
+};
+
+export type UsersSort = {
+  byAge: () => void;
+  byGender: () => void;
+  byABC: () => void;
 };

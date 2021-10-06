@@ -1,14 +1,13 @@
 import { Image, Box, Icon, Flex } from "@chakra-ui/react";
-import { birthdayToAge } from "../../utils/birthdayToAge";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 
 type UserCardHeaderProps = {
-  birthday: string;
+  age: number;
   gender: string;
   picture: string;
 };
 
-const UserCardHeader = ({ birthday, gender, picture }: UserCardHeaderProps) => {
+const UserCardHeader = ({ age, gender, picture }: UserCardHeaderProps) => {
   return (
     <>
       <Flex
@@ -22,7 +21,7 @@ const UserCardHeader = ({ birthday, gender, picture }: UserCardHeaderProps) => {
         color="appWhiteSecondary"
       >
         <Box fontStyle="italic" fontSize="3xl" fontWeight="bold">
-          {birthdayToAge(birthday)}
+          {age}
         </Box>
         <Icon
           w="9"

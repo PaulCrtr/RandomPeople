@@ -7,6 +7,7 @@ const Footer = () => {
       color="appWhite"
       p={["30px", "60px", "60px 100px 60px 100px", "60px 120px 60px 120px"]}
       marginTop="auto"
+      mt="10"
     >
       <Flex
         direction={["column", "column", "column", "row"]}

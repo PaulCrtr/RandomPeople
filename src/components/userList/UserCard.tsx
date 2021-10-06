@@ -18,7 +18,7 @@ const UserCard = ({ user }: UserCardProps) => {
     >
       <UserCardHeader
         gender={user.gender}
-        birthday={user.dob.date}
+        age={user.age}
         picture={user.picture.large}
       />
       <Flex direction="column" position="relative" top="-39">
