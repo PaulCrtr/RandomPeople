@@ -27,7 +27,7 @@ const UserList = () => {
         >
           {users
             ?.filter((user) =>
-              user.name.first
+              `${user.name.first} ${user.name.last}`
                 .toLowerCase()
                 .startsWith(filterValue.toLowerCase())
             )

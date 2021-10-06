@@ -66,7 +66,9 @@ const useHandleUsers = () => {
     byABC: () => {
       if (users) {
         setUsers(
-          [...users].sort((a, b) => (a.name.first > b.name.first ? 1 : -1))
+          [...users].sort((a, b) =>
+            a.name.first + a.name.last > b.name.first + b.name.last ? 1 : -1
+          )
         );
       }
     },

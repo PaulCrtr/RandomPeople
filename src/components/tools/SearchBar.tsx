@@ -9,7 +9,7 @@ const SearchBar = ({ setFilterValue }: SearchBarProps) => {
   return (
     <Input
       onChange={(e) => setFilterValue(e.target.value)}
-      placeholder="Search by first name"
+      placeholder="Search by name"
       size="lg"
       backgroundColor="appWhite"
       shadow="lg"
