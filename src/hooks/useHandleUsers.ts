@@ -1,18 +1,20 @@
+import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { User, UsersSort } from "../types/user";
 import { birthdayToAge } from "../utils/birthdayToAge";
 
 const RANDOM_USER_BASE_URL = "https://randomuser.me/api/";
 
-const useFetchUsers = () => {
+const useHandleUsers = () => {
   const [users, setUsers] = useState<User[] | null>(null);
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [filterValue, setFilterValue] = useState("");
 
+  const toast = useToast();
+
   // API call
-  const getUsers = async () => {
+  const getUsers = useCallback(async () => {
     setLoading(true);
     try {
       const response = await axios.get<{ results: User[] }>(
@@ -29,20 +31,21 @@ const useFetchUsers = () => {
           .sort((a, b) => a.age - b.age)
       );
     } catch (err: any) {
-      if (err.error) {
-        setError(err.error);
-      } else {
-        setError("Error...");
-      }
+      toast({
+        title: err.error ? err.error : "Error...",
+        status: "error",
+        duration: 2500,
+        isClosable: true,
+      });
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
 
   // data fetch when didmount
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [getUsers]);
 
   // sorting functions
   const sort: UsersSort = {
@@ -69,7 +72,7 @@ const useFetchUsers = () => {
     },
   };
 
-  return { users, error, loading, sort, getUsers, filterValue, setFilterValue };
+  return { users, loading, sort, getUsers, filterValue, setFilterValue };
 };
 
-export default useFetchUsers;
+export default useHandleUsers;

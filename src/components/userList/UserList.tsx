@@ -1,11 +1,11 @@
 import { Spinner, Grid } from "@chakra-ui/react";
-import useFetchUsers from "../../hooks/useFetchUsers";
+import useHandleUsers from "../../hooks/useHandleUsers";
 import Tools from "../tools/Tools";
 import UserCard from "./UserCard";
 
 const UserList = () => {
   const { users, loading, sort, getUsers, filterValue, setFilterValue } =
-    useFetchUsers();
+    useHandleUsers();
 
   return (
     <>
