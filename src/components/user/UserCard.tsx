@@ -4,10 +4,19 @@ import UserCardHeader from "./UserCardHeader";
 import { FaUserPlus } from "react-icons/fa";
 import { GrMap } from "react-icons/gr";
 import { AiOutlinePhone, AiOutlineMail } from "react-icons/ai";
+import { deleteUser, saveUser } from "../../utils/followingsLocalStorage";
+import { useState } from "react";
+import { RiUserUnfollowFill } from "react-icons/ri";
 
-type UserCardProps = { user: User };
+type UserCardProps = { user: User; updateFollowingsState?: () => void };
 
-const UserCard = ({ user }: UserCardProps) => {
+const UserCard = ({ user, updateFollowingsState }: UserCardProps) => {
+  const [isFollowButtonActive, setIsFollowButtonActive] = useState(true);
+  const deleteFollowingThenUpdateState = (id: number) => {
+    deleteUser(id);
+    updateFollowingsState && updateFollowingsState();
+  };
+
   return (
     <Box
       backgroundColor="appWhiteSecondary"
@@ -26,13 +35,21 @@ const UserCard = ({ user }: UserCardProps) => {
           {user.name.first} {user.name.last}
         </Box>
         <Button
+          disabled={!isFollowButtonActive}
           colorScheme="blue"
           size="xs"
-          rightIcon={<Icon as={FaUserPlus} />}
+          rightIcon={
+            <Icon as={user.localCustomId ? RiUserUnfollowFill : FaUserPlus} />
+          }
           alignSelf="center"
           mb="5"
+          onClick={() =>
+            user.localCustomId
+              ? deleteFollowingThenUpdateState(user.localCustomId)
+              : saveUser(user, setIsFollowButtonActive)
+          }
         >
-          Follow
+          {user.localCustomId ? "Unfollow" : "Follow"}
         </Button>
         <Divider />
         <Box fontSize="lg" fontWeight="bold" m="2">

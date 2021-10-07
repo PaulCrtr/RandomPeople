@@ -1,4 +1,5 @@
 export type User = {
+  localCustomId?: number;
   gender: "male" | "female";
   name: {
     first: string;

@@ -1,4 +1,5 @@
 import { useMediaQuery, Flex, Heading } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isLargerThan480] = useMediaQuery("(min-width: 480px)");
@@ -6,14 +7,20 @@ const Navbar = () => {
   return (
     <Flex alignItems="center" p="3" maxWidth="100vw" shadow="lg">
       {isLargerThan480 && (
-        <Heading size="md" mr="10">
-          RandomPeople
-        </Heading>
+        <Link to="/">
+          <Heading size="md" mr="10">
+            RandomPeople
+          </Heading>
+        </Link>
       )}
-      <Heading size="sm" mr="5">
-        Home
-      </Heading>
-      <Heading size="sm">Followings</Heading>
+      <Link to="/">
+        <Heading size="sm" mr="5">
+          Home
+        </Heading>
+      </Link>
+      <Link to="/followings">
+        <Heading size="sm">Followings</Heading>
+      </Link>
     </Flex>
   );
 };
